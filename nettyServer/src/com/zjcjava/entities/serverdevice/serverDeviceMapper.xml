@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的 
+	例如namespace="me.gacl.mapping.userMapper"就是me.gacl.mapping(包名)+userMapper(userMapper.xml文件去除后缀) -->
+<mapper namespace="com.zjcjava.entities.serverdevice.serverDeviceMapper">
+	<!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复 使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型 
+		resultType="com.zjcjava.entities.serverdevice.ServerDevice"就表示将查询结果封装成一个ServerDevice类的对象返回 
+		User类就是users表所对应的实体类 -->
+	
+		
+	<!-- 根据id查询得到一个ServerDevice对象 -->
+	<select id="getAllServerDevice" resultType="com.zjcjava.entities.serverdevice.ServerDevice">
+		select * from
+		ServerDevice
+	</select>
+
+	<select id="getServerDevice" parameterType="int"
+		resultType="com.zjcjava.entities.serverdevice.ServerDevice">
+		select * from ServerDevice where id=#{id}
+	</select>
+
+	<insert id="addServerDevice" parameterType="com.zjcjava.entities.serverdevice.ServerDevice"  useGeneratedKeys="true" keyProperty="id">
+		<selectKey resultType="java.lang.Short" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+		insert into
+		ServerDevice(
+		device_id,
+		dt,
+		tz,
+		gps_switch,
+		bt_switch,
+		incoming,
+		record,
+		call_monitor,
+		call_monitor_no,
+		udp_cycle,
+		ctrl_light,
+		ctrl_voice,
+		sync,
+		restart,
+		track,
+		upload_loc,
+		sos,
+		udp_wifi,
+		shutdown,
+		normal_key,
+		yaoyao,
+		ktone,
+		mode_fly,
+		lang
+		) values(
+		#{device_id},
+		#{dt},
+		#{tz},
+		#{gps_switch},
+		#{bt_switch},
+		#{incoming},
+		#{record},
+		#{call_monitor},
+		#{call_monitor_no},
+		#{udp_cycle},
+		#{ctrl_light},
+		#{ctrl_voice},
+		#{sync},
+		#{restart},
+		#{track},
+		#{upload_loc},
+		#{sos},
+		#{udp_wifi},
+		#{shutdown},
+		#{normal_key},
+		#{yaoyao},
+		#{ktone},
+		#{mode_fly},
+		#{lang}
+		)
+	</insert>
+
+
+	<insert id="insertServerDevice" parameterType="com.zjcjava.entities.serverdevice.ServerDevice"  useGeneratedKeys="true" keyProperty="id" >
+		insert into serverdevice
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="device_id != null">
+				device_id,
+			</if>
+			<if test="dt != null">
+				dt,
+			</if>
+			<if test="tz != null">
+				tz,
+			</if>
+			<if test="gps_switch != null">
+				gps_switch,
+			</if>
+			<if test="bt_switch != null">
+				bt_switch,
+			</if>
+			<if test="incoming != null">
+				incoming,
+			</if>
+			<if test="record != null">
+				record,
+			</if>
+			<if test="call_monitor != null">
+				call_monitor,
+			</if>
+			<if test="call_monitor_no != null">
+				call_monitor_no,
+			</if>
+			<if test="udp_cycle != null">
+				udp_cycle,
+			</if>
+			<if test="ctrl_light != null">
+				ctrl_light,
+			</if>
+			<if test="ctrl_voice != null">
+				ctrl_voice,
+			</if>
+			<if test="sync != null">
+				sync,
+			</if>
+			<if test="restart != null">
+				restart,
+			</if>
+			<if test="track != null">
+				track,
+			</if>
+			<if test="upload_loc != null">
+				upload_loc,
+			</if>
+			<if test="sos != null">
+				sos,
+			</if>
+			<if test="udp_wifi != null">
+				udp_wifi,
+			</if>
+			<if test="shutdown != null">
+				shutdown,
+			</if>
+			<if test="normal_key != null">
+				normal_key,
+			</if>
+			<if test="yaoyao != null">
+				yaoyao,
+			</if>
+			<if test="ktone != null">
+				ktone,
+			</if>
+			<if test="mode_fly != null">
+				mode_fly,
+			</if>
+			<if test="lang != null">
+				lang,
+			</if>
+			<if test="imei != null">
+				imei,
+			</if>
+			<if test="imsi != null">
+				imsi,
+			</if>
+			<if test="sn != null">
+				sn,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="device_id != null">
+				#{device_id,jdbcType=INTEGER},
+			</if>
+			<if test="dt != null">
+				#{dt,jdbcType=INTEGER},
+			</if>
+			<if test="tz != null">
+				#{tz,jdbcType=DOUBLE},
+			</if>
+			<if test="gps_switch != null">
+				#{gps_switch,jdbcType=INTEGER},
+			</if>
+			<if test="bt_switch != null">
+				#{bt_switch,jdbcType=INTEGER},
+			</if>
+			<if test="incoming != null">
+				#{incoming,jdbcType=INTEGER},
+			</if>
+			<if test="record != null">
+				#{record,jdbcType=INTEGER},
+			</if>
+			<if test="call_monitor != null">
+				#{call_monitor,jdbcType=INTEGER},
+			</if>
+			<if test="call_monitor_no != null">
+				#{call_monitor_no,jdbcType=INTEGER},
+			</if>
+			<if test="udp_cycle != null">
+				#{udp_cycle,jdbcType=INTEGER},
+			</if>
+			<if test="ctrl_light != null">
+				#{ctrl_light,jdbcType=INTEGER},
+			</if>
+			<if test="ctrl_voice != null">
+				#{ctrl_voice,jdbcType=INTEGER},
+			</if>
+			<if test="sync != null">
+				#{sync,jdbcType=INTEGER},
+			</if>
+			<if test="restart != null">
+				#{restart,jdbcType=INTEGER},
+			</if>
+			<if test="track != null">
+				#{track,jdbcType=INTEGER},
+			</if>
+			<if test="upload_loc != null">
+				#{upload_loc,jdbcType=INTEGER},
+			</if>
+			<if test="sos != null">
+				#{sos,jdbcType=INTEGER},
+			</if>
+			<if test="udp_wifi != null">
+				#{udp_wifi,jdbcType=INTEGER},
+			</if>
+			<if test="shutdown != null">
+				#{shutdown,jdbcType=INTEGER},
+			</if>
+			<if test="normal_key != null">
+				#{normal_key,jdbcType=INTEGER},
+			</if>
+			<if test="yaoyao != null">
+				#{yaoyao,jdbcType=INTEGER},
+			</if>
+			<if test="ktone != null">
+				#{ktone,jdbcType=INTEGER},
+			</if>
+			<if test="mode_fly != null">
+				#{mode_fly,jdbcType=INTEGER},
+			</if>
+			<if test="lang != null">
+				#{lang,jdbcType=INTEGER},
+			</if>
+			<if test="imei != null">
+				#{imei,jdbcType=VARCHAR},
+			</if>
+			<if test="imsi != null">
+				#{imsi,jdbcType=VARCHAR},
+			</if>
+			<if test="sn != null">
+				#{sn,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateServerDevice" parameterType="com.zjcjava.entities.serverdevice.ServerDevice">
+		update serverdevice
+		<set>
+			<if test="dt != null">
+				dt = #{dt,jdbcType=INTEGER},
+			</if>
+			<if test="tz != null">
+				tz = #{tz,jdbcType=DOUBLE},
+			</if>
+			<if test="gps_switch != null">
+				gps_switch = #{gps_switch,jdbcType=INTEGER},
+			</if>
+			<if test="bt_switch != null">
+				bt_switch = #{bt_switch,jdbcType=INTEGER},
+			</if>
+			<if test="incoming != null">
+				incoming = #{incoming,jdbcType=INTEGER},
+			</if>
+			<if test="record != null">
+				record = #{record,jdbcType=INTEGER},
+			</if>
+			<if test="call_monitor != null">
+				call_monitor = #{call_monitor,jdbcType=INTEGER},
+			</if>
+			<if test="call_monitor_no != null">
+				call_monitor_no = #{call_monitor_no,jdbcType=INTEGER},
+			</if>
+			<if test="udp_cycle != null">
+				udp_cycle = #{udp_cycle,jdbcType=INTEGER},
+			</if>
+			<if test="ctrl_light != null">
+				ctrl_light = #{ctrl_light,jdbcType=INTEGER},
+			</if>
+			<if test="ctrl_voice != null">
+				ctrl_voice = #{ctrl_voice,jdbcType=INTEGER},
+			</if>
+			<if test="sync != null">
+				sync = #{sync,jdbcType=INTEGER},
+			</if>
+			<if test="restart != null">
+				restart = #{restart,jdbcType=INTEGER},
+			</if>
+			<if test="track != null">
+				track = #{track,jdbcType=INTEGER},
+			</if>
+			<if test="upload_loc != null">
+				upload_loc = #{upload_loc,jdbcType=INTEGER},
+			</if>
+			<if test="sos != null">
+				sos = #{sos,jdbcType=INTEGER},
+			</if>
+			<if test="udp_wifi != null">
+				udp_wifi = #{udp_wifi,jdbcType=INTEGER},
+			</if>
+			<if test="shutdown != null">
+				shutdown = #{shutdown,jdbcType=INTEGER},
+			</if>
+			<if test="normal_key != null">
+				normal_key = #{normal_key,jdbcType=INTEGER},
+			</if>
+			<if test="yaoyao != null">
+				yaoyao = #{yaoyao,jdbcType=INTEGER},
+			</if>
+			<if test="ktone != null">
+				ktone = #{ktone,jdbcType=INTEGER},
+			</if>
+			<if test="mode_fly != null">
+				mode_fly = #{mode_fly,jdbcType=INTEGER},
+			</if>
+			<if test="lang != null">
+				lang = #{lang,jdbcType=INTEGER},
+			</if>
+			<if test="imei != null">
+				imei = #{imei,jdbcType=VARCHAR},
+			</if>
+			<if test="imsi != null">
+				imsi = #{imsi,jdbcType=VARCHAR},
+			</if>
+			<if test="sn != null">
+				sn = #{sn,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+</mapper>
